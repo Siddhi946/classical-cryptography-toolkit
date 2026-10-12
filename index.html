@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CipherLab | Classical Cryptography Toolkit</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<nav class="navbar">
+  <a class="brand" href="#top"><span class="brand-icon">✦</span> Cipher<span class="brand-light">Lab</span></a>
+  <div class="nav-links"><a class="active" href="#workspace">Toolkit</a><a href="#algorithms">Algorithms</a><a href="#help">Help</a></div>
+  <span class="nav-pill"><span class="dot"></span> Browser-based</span>
+</nav>
+<header class="hero" id="top">
+  <div class="hero-copy">
+    <div class="eyebrow"><span>NETWORK SECURITY</span><span class="eyebrow-line"></span><span>MINI PROJECT</span></div>
+    <h1>Classical Cryptography<br><span>Toolkit.</span></h1>
+    <p>Explore, encrypt and decrypt messages with eight foundational classical ciphers — in one clean, easy-to-use workspace.</p>
+    <a class="hero-cta" href="#workspace">Open toolkit <span>↓</span></a>
+    <div class="hero-note">No Python. No server setup. Runs in your browser.</div>
+  </div>
+  <div class="hero-art" aria-hidden="true">
+    <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+    <div class="lock-card"><div class="lock-top">SECURE MESSAGE</div><div class="lock-symbol">⌑</div><div class="lock-lines"><i></i><i></i><i></i></div><div class="lock-status"><span class="dot"></span> CIPHER READY</div></div>
+    <div class="float-chip chip-a">CLASSICAL CIPHERS</div><div class="float-chip chip-b">A → F</div><div class="float-chip chip-c">0101 1010</div>
+  </div>
+</header>
+<main class="container">
+  <section class="stats">
+    <div class="stat"><span class="stat-icon">⌘</span><div><strong>08</strong><small>Classical ciphers</small></div></div>
+    <div class="stat"><span class="stat-icon">⇄</span><div><strong>02</strong><small>Core operations</small></div></div>
+    <div class="stat"><span class="stat-icon">▤</span><div><strong>.TXT</strong><small>File support</small></div></div>
+    <div class="stat"><span class="stat-icon">◷</span><div><strong>LIVE</strong><small>Execution timing</small></div></div>
+  </section>
+  <section class="workspace" id="workspace">
+    <div class="section-heading"><div><div class="eyebrow dark">YOUR WORKSPACE</div><h2>Encrypt a message</h2><p>Choose a cipher, enter your message and provide the key.</p></div><span class="workspace-tag">● READY TO PROCESS</span></div>
+    <div class="tool-form">
+      <div class="field"><label for="cipher">01 / SELECT ALGORITHM</label><select id="cipher">
+        <option value="caesar">Caesar Cipher</option><option value="monoalphabetic">Monoalphabetic Cipher</option><option value="playfair">Playfair Cipher</option><option value="hill">Hill Cipher (2×2)</option><option value="vigenere">Vigenère Cipher</option><option value="otp">One-Time Pad</option><option value="railfence">Rail Fence Cipher</option><option value="columnar">Columnar Transposition</option>
+      </select></div>
+      <div class="field"><label for="mode">02 / OPERATION</label><select id="mode"><option value="encrypt">Encrypt</option><option value="decrypt">Decrypt</option></select></div>
+      <div class="field full"><label for="message">03 / YOUR MESSAGE</label><textarea id="message" rows="5" placeholder="Type or paste your message here..."></textarea><div class="field-foot"><span>Use the same compatible key to decrypt.</span><span id="char-count">0 characters</span></div></div>
+      <div class="field full"><label for="key">04 / CIPHER KEY</label><div class="key-row"><input id="key" type="text" placeholder="Enter your cipher key"><button class="secondary-btn" type="button" id="random-key">Generate substitution key</button></div><small id="key-hint">Enter an integer shift, for example 5.</small></div>
+      <div class="form-actions"><button class="primary-btn" id="run-btn" type="button"><span>⇄</span> Run cipher</button><button class="secondary-btn" id="clear-btn" type="button">Clear form</button></div>
+    </div>
+    <div id="alert" class="alert hidden" role="alert"></div>
+    <section class="result-panel hidden" id="result-panel"><div class="result-heading"><div><span class="result-kicker">PROCESS COMPLETE</span><h3 id="result-title">Encrypted output</h3></div><span class="time-chip" id="time-chip">◷ 0.000 ms</span></div><textarea id="result-text" rows="5" readonly></textarea><div class="result-actions"><button class="primary-btn small" id="copy-btn" type="button">Copy output</button><button class="secondary-btn" id="save-output" type="button">Save output .txt</button><span id="copy-status"></span></div></section>
+  </section>
+  <section class="file-section">
+    <div class="section-heading"><div><div class="eyebrow dark">FILE UTILITIES</div><h2>Work with a text file</h2><p>Select a UTF-8 .txt file, process it in your browser and download the result.</p></div><span class="file-symbol">↥</span></div>
+    <div class="file-form">
+      <div class="field"><label for="file-input">SELECT .TXT FILE</label><input type="file" id="file-input" accept=".txt,text/plain"></div>
+      <div class="field"><label for="file-cipher">ALGORITHM</label><select id="file-cipher"><option value="caesar">Caesar</option><option value="monoalphabetic">Monoalphabetic</option><option value="playfair">Playfair</option><option value="hill">Hill</option><option value="vigenere">Vigenère</option><option value="otp">One-Time Pad</option><option value="railfence">Rail Fence</option><option value="columnar">Columnar Transposition</option></select></div>
+      <div class="field"><label for="file-mode">OPERATION</label><select id="file-mode"><option value="encrypt">Encrypt file</option><option value="decrypt">Decrypt file</option></select></div>
+      <div class="field"><label for="file-key">KEY</label><input id="file-key" placeholder="Enter key"></div>
+      <button class="primary-btn" id="process-file" type="button">Process & download ↗</button>
+    </div>
+    <p class="tiny-note">File processing happens locally in your browser. Use .txt files only.</p>
+  </section>
+  <section class="compare-section">
+    <div class="section-heading"><div><div class="eyebrow dark">QUICK ANALYSIS</div><h2>Compare algorithms</h2><p>Compare preset-key results and approximate processing time on the same sample text.</p></div></div>
+    <div class="compare-form"><textarea id="compare-input" rows="2" placeholder="Enter sample text to compare...">NETWORK SECURITY</textarea><button class="secondary-btn" id="compare-btn" type="button">Compare ciphers ↗</button></div>
+    <div id="compare-output"></div>
+  </section>
+  <section class="algorithm-section" id="algorithms"><div class="section-heading"><div><div class="eyebrow dark">INSIDE THE TOOLKIT</div><h2>Eight ways to transform text</h2><p>Substitution and transposition techniques for learning cryptography fundamentals.</p></div></div>
+    <div class="algorithm-grid">
+      <article class="algo-card"><span class="algo-number">01</span><h3>Caesar</h3><p>Shifts each English letter by a fixed number.</p><span class="algo-type">SUBSTITUTION</span></article>
+      <article class="algo-card"><span class="algo-number">02</span><h3>Monoalphabetic</h3><p>Maps each letter to a letter in a substitution alphabet.</p><span class="algo-type">SUBSTITUTION</span></article>
+      <article class="algo-card"><span class="algo-number">03</span><h3>Playfair</h3><p>Encrypts pairs of letters using a 5 × 5 key square.</p><span class="algo-type">DIGRAPH</span></article>
+      <article class="algo-card"><span class="algo-number">04</span><h3>Hill</h3><p>Uses matrix multiplication modulo 26.</p><span class="algo-type">MATRIX</span></article>
+      <article class="algo-card"><span class="algo-number">05</span><h3>Vigenère</h3><p>Uses a repeating keyword to vary letter shifts.</p><span class="algo-type">POLYALPHABETIC</span></article>
+      <article class="algo-card"><span class="algo-number">06</span><h3>One-Time Pad</h3><p>Combines letters with a key matching message length.</p><span class="algo-type">SUBSTITUTION</span></article>
+      <article class="algo-card"><span class="algo-number">07</span><h3>Rail Fence</h3><p>Writes text in a zigzag pattern across rails.</p><span class="algo-type">TRANSPOSITION</span></article>
+      <article class="algo-card"><span class="algo-number">08</span><h3>Columnar</h3><p>Reorders text according to keyword column order.</p><span class="algo-type">TRANSPOSITION</span></article>
+    </div>
+  </section>
+  <section class="help-section" id="help"><div class="eyebrow dark">QUICK HELP</div><h2>Key formats at a glance</h2><div class="table-wrap"><table><thead><tr><th>Cipher</th><th>Example key</th><th>Notes</th></tr></thead><tbody>
+  <tr><td>Caesar</td><td><code>5</code></td><td>Integer shift</td></tr><tr><td>Monoalphabetic</td><td><code>QWERTYUIOPASDFGHJKLZXCVBNM</code></td><td>26 unique letters</td></tr><tr><td>Playfair</td><td><code>MONARCHY</code></td><td>I and J share a square; filler letters may be added</td></tr><tr><td>Hill (2×2)</td><td><code>3,3,2,5</code></td><td>Four integers; matrix must be invertible mod 26</td></tr><tr><td>Vigenère</td><td><code>LEMON</code></td><td>Keyword repeats across letters</td></tr><tr><td>One-Time Pad</td><td><code>XMCKL</code></td><td>Same cleaned message length</td></tr><tr><td>Rail Fence</td><td><code>3</code></td><td>Number of rails, minimum 2</td></tr><tr><td>Columnar</td><td><code>ZEBRA</code></td><td>Keyword sets column order</td></tr>
+  </tbody></table></div><div class="notice"><span>ⓘ</span><p><strong>Educational use only.</strong> Classical ciphers are not suitable for protecting real passwords or confidential communications. This app processes text locally in your browser.</p></div></section>
+</main>
+<footer><a class="brand" href="#top">✦ Cipher<span class="brand-light">Lab</span></a><span>Network Security Mini Project · Final Year (ECM) 2026–27</span><a href="#help">Key guide ↑</a></footer>
+<script src="js/ciphers.js"></script><script src="js/main.js"></script>
+</body></html>
